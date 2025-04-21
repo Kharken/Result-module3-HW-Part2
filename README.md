@@ -10,12 +10,18 @@
 * Project objectives:
 	* task-1: typization of a function that calculates the price taking into account the size of the discount, availability and instalment period
 
-# Install
+### Install
 
-```npm i```
+```
+npm i
+```
 
-### Run project
+### Compile
+```
+npm run compile
+```
 
-```npm run compile```
-```node compiled/task-1```
-
+### Run
+```
+node compiled/task-1
+```
