@@ -1,19 +1,19 @@
-interface unnormalizedPostsItem {
+interface UnnormalizedPostsItem {
 	id: string;
 	title: string;
 	body: string;
 }
 
 interface ById {
-	[id: string]: unnormalizedPostsItem;
+	[id: string]: UnnormalizedPostsItem;
 }
 
-interface normalizedPostsItem {
+interface NormalizedPostsItem {
 	byId: ById;
 	allIds: string[];
 }
 
-const posts: unnormalizedPostsItem[] = [
+const posts: UnnormalizedPostsItem[] = [
 	{
 		id: '62e69d5a5458aac0ed320b35',
 		title: 'id labore ex et quam laborum',
@@ -52,7 +52,7 @@ const posts: unnormalizedPostsItem[] = [
 ];
 
 
-const normalizeData = (unnormalizedData: unnormalizedPostsItem[]): normalizedPostsItem => {
+const normalizeData = (unnormalizedData: UnnormalizedPostsItem[]): NormalizedPostsItem => {
 	const idsList: string[] = unnormalizedData.map(item => item.id);
 	const groupedByIdObject: ById = createGroupedObject(unnormalizedData);
 
@@ -62,10 +62,10 @@ const normalizeData = (unnormalizedData: unnormalizedPostsItem[]): normalizedPos
 	}
 };
 
-function createGroupedObject (arr: unnormalizedPostsItem[]): ById {
+function createGroupedObject (arr: UnnormalizedPostsItem[]): ById {
 
-	return arr.reduce((acc: ById, item: unnormalizedPostsItem) => {
-		const { id, title, body }: unnormalizedPostsItem = item;
+	return arr.reduce((acc: ById, item: UnnormalizedPostsItem) => {
+		const { id, title, body }: UnnormalizedPostsItem = item;
 		acc[id] = {id, title, body};
 		return acc;
 	}, {})
