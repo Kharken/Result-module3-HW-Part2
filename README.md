@@ -29,3 +29,6 @@ node compiled/task-1
 ```
 node compiled/task-2
 ```
+```
+node compiled/task-3
+```
