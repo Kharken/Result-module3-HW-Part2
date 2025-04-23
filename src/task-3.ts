@@ -12,23 +12,24 @@ interface RequiredCommentData {
 	Email: string;
 }
 
-const COMMENTS_URL: string = 'https://jsonplaceholder.typicode.com/comments';
+const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
 
-const getData = async (url: string): Promise<void> => {
+const getData = async (url: string): Promise<RequiredCommentData[]> => {
 	const response = await fetch(url);
+	if(!response.ok) {
+		throw new Error('Could not find comments');
+	}
+
 	const data: FullCommentData[] = await response.json();
-	const result: RequiredCommentData[] = data.map((item: FullCommentData): RequiredCommentData => {
+	return data.map((item: FullCommentData): RequiredCommentData => {
 		return {
 			ID: item.id,
 			Email: item.email,
 		}
-	}).slice(0, 20)
-
-	if(!response.ok) {
-		throw new Error('Could not find comments');
-	}
-	console.log(result)
-
+	}).slice(0, 20);
 }
 
-getData(COMMENTS_URL).catch(error => console.log(error));
+
+getData(COMMENTS_URL)
+	.then(data => console.log(data))
+	.catch(error => console.log(error));
